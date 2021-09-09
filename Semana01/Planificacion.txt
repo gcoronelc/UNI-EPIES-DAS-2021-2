@@ -1,0 +1,45 @@
+﻿OBJETIVO
+---------------------------------------------------
+Implementar una aplicación web.
+Que debe tener:
+  1.- Login
+  2.- CRUD de por lo menos tres tablas.
+  3.- Tres procesos de negocio
+  4.- Tres reportes estadisticos
+
+Que se necesita:
+  1.- Manejo de BD
+  2.- Programación Web (BackEnd y FrontEnd)
+  3.- Reportes estadisticos en Web
+
+
+PRACTICAS
+------------------------------------------------------
+
+1ra Practica:
+    - Teoria de SQL, Java, ADS => Individual
+    - Practica: SQL => Grupo
+    
+2da Practica 
+    - Teoria de ADS => Individual
+    - Analisis de un caso => Grupo 
+    
+3ra Practica: Proyecto
+    1.- Login
+    2.- CRUD de por lo menos tres tablas.
+ 
+4ta Practica: Proyecto
+    3.- Tres procesos negocio
+    4.- Tres reportes estadisticos
+
+
+GRUPO 1 (4 personas)
+----------------------------------
+
+
+DELEGADOS
+---------------------------------------
+RODRIGO ARMANDO PUJADA PACORA (960041645)
+SEBASTIAN HUGO LAOPA ALARCON (975269268)
+LUIS DAVID PAREDES CAPCHA (986157236)
+
