@@ -1,15 +1,16 @@
-![UNI-EPIES DAS 2021-1](https://raw.githubusercontent.com/gcoronelc/UNI-EPIES-DAS-2021-1/main/img/CURSO.JPG)
+![UNI-EPIES DAS 2021-2](https://raw.githubusercontent.com/gcoronelc/UNI-EPIES-DAS-2021-2/main/img/CURSO.JPG)
 
 
 # UNI-EPIES ADS
 
-- Lugar: UNI
+- Lugar: UNI - FIEECS
 - Horario 1: JUE de 2 a 4 pm (Practica)
 - Horario 2: VIE de 3 a 6 pm (Teoria)
-- Inicio: 15.ABRIL.2021
+- Inicio: 11.SETIEMBRE.2021
 - Aula virtual: https://www.virtualfieecs.pe/
-- Delegado: ENZO CARBAJAL
-- Subdelegado: KIARA FRANCISCO Y KEVIN PAUCAR
+- Delegado: RODRIGO ARMANDO PUJADA PACORA
+- Subdelegado 1: SEBASTIAN HUGO LAOPA ALARCON
+- Subdelegado 2: LUIS DAVID PAREDES CAPCHA
 
 
 # DOCENTE
