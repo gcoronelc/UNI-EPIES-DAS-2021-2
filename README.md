@@ -15,7 +15,7 @@
 
 # DOCENTE
 
-- Docente: ING. CORONEL CASTILLO ERIC GUSTAVO
+- Docente: ING. ERIC GUSTAVO CORONEL CASTILLO
 - Email: gcoronel@uni.edu.pe
 - Blog: www.desarrollasoftware.com
 - Canal Youtube: https://www.youtube.com/DesarrollaSoftware
