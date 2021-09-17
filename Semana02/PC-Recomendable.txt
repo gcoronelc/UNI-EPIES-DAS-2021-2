@@ -1,0 +1,14 @@
+﻿
+COMPUTADORA
+---------------------------
+ESTADO         PROCESADOR                RAM       DISCO DURO       VIDEO
+----------------------------------------------------------------------------------
+MINIMO         I7 10MA Generación         16 GB     1TB SOLIDO       2GB INDEPENDIENTE
+RECOMENDABLE   I7 La ultima generacion    32 GB     2TB SOLIDO       4GB INDEPENDIENTE
+
+
+
+OTRAS OPCIONES
+-------------------------------
+- Aumentar memoria RAM: 4GB -> 8GB o 12GB 
+- Cambiar el disco duro a uno de estado solido. (1TB)

@@ -93,6 +93,46 @@ go
 -- FUNCIONES AGREGADAS
 -- Hacer estadistica descriptiva
 -- ================================================================
+/*
+   - sum
+   - max
+   - min
+   - count
+   - avg
+   - std
+   - stdn
+   - var
+   - varn
+*/
+
+select 
+	count(1) [Cant. Estudiantes] ,
+	sum(mat_precio) [Importe Proyectado] 
+from educa.dbo.MATRICULA;
+go
+
+/*
+Desarrolle una sentencia SELECT para encontrar el mayor 
+y menor sueldo en el departamento de ventas. 
+Base de datos RH.
+*/
+
+select
+	max(sueldo) [Sueldo Mayor],
+	avg(sueldo) [Sueldo Promedio],
+	min(sueldo) [Sueldo Menor]
+from rh.dbo.empleado;
+go
+
+select
+	iddepartamento,
+	max(sueldo) [Sueldo Mayor],
+	avg(sueldo) [Sueldo Promedio],
+	min(sueldo) [Sueldo Menor]
+from rh.dbo.empleado
+group by iddepartamento;
+go
+
 
 
 
