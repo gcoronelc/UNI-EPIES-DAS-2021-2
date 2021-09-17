@@ -133,6 +133,27 @@ from rh.dbo.empleado
 group by iddepartamento;
 go
 
+/*
+Desarrolle una sentencia SELECT para encontrar la 
+cantidad de trabajadores por departamento. 
+Base de datos RH.
+*/
+
+select 
+	iddepartamento,
+	count(1) [Cant. Trabajadores]
+from rh.dbo.empleado
+group by iddepartamento;
+go
+
+/*
+Quien es el empleado con menor salario
+en cada departamento. 
+Base de datos RH.
+*/
+
+
+
 
 
 
