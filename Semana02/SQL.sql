@@ -146,11 +146,23 @@ from rh.dbo.empleado
 group by iddepartamento;
 go
 
+
 /*
-Quien es el empleado con menor salario
+Quien es el empleado o empleados con menor salario
 en cada departamento. 
 Base de datos RH.
 */
+
+with
+v1 as (
+		select iddepartamento, min(sueldo)  sueldo_minimo
+		from rh.dbo.empleado
+		group by iddepartamento )
+select e.* 
+from rh.dbo.empleado e
+join v1 on e.iddepartamento = v1.iddepartamento
+		   and e.sueldo = v1.sueldo_minimo;
+go
 
 
 
