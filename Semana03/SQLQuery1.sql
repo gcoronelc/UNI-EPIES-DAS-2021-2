@@ -96,5 +96,83 @@ group by u.ciudad;
 go
 
 
+/*
 
+BASE DE DATOS: EDUCA
+
+Desarrollar una consulta que permita obtener el siguiente resultado:
+
+NOMBRE DEL CURSO      MATRICULADOS   COMPROMETIDO    PAGADO
+------------------------------------------------------------------
+SQL SERVER ADM.          5            4,250.00       3,310.00
+
+
+SELECT * FROM EDUCA.DBO.MATRICULA WHERE CUR_ID=2;
+SELECT * FROM EDUCA.DBO.PAGO WHERE CUR_ID=2;
+SELECT * FROM EDUCA.DBO.CURSO;
+
+*/
+
+
+
+/*
+Encontrar el empleado que tiene el menor salario por departamento. 
+Base de datos RH
+*/
+
+-- Work
+
+SELECT iddepartamento, MIN(SUELDO) SUELDO_MINIMO
+FROM RH.DBO.empleado
+group by iddepartamento;
+go
+
+-- Solucion 1
+
+select e.* 
+from rh.dbo.empleado e
+join (
+	SELECT iddepartamento, MIN(SUELDO) SUELDO_MINIMO
+	FROM RH.DBO.empleado
+	group by iddepartamento ) t
+on e.iddepartamento = t.iddepartamento and e.sueldo = t.SUELDO_MINIMO;
+go
+
+-- Solución 2
+
+with 
+v1 as (
+	SELECT iddepartamento, MIN(SUELDO) SUELDO_MINIMO
+	FROM RH.DBO.empleado
+	group by iddepartamento 
+)
+select e.* 
+from rh.dbo.empleado e
+join v1 on e.iddepartamento = v1.iddepartamento and e.sueldo = v1.SUELDO_MINIMO;
+go
+
+
+
+/*
+Calcular los ingresos por mes de un determinado año, por curso.
+Base de datos: EDUTEC
+
+NOMBRE CURSO      ENERO    FEBRERO   MARZO ..... TOTAL
+----------------------------------------------------------------
+
+*/
+
+
+SELECT 
+	C.NomCurso [NOMBRE CURSO],
+	SUM(CASE WHEN MONTH(M.FecMatricula)=1 THEN CP.PreCursoProg ELSE 0 END) [ENERO],
+	SUM(CASE WHEN MONTH(M.FecMatricula)=2 THEN CP.PreCursoProg ELSE 0 END) [FEBRERO],
+	SUM(CASE WHEN MONTH(M.FecMatricula)=3 THEN CP.PreCursoProg ELSE 0 END) [MARZO],
+	SUM(CP.PreCursoProg) [TOTAL]
+FROM EDUTEC.DBO.Curso C
+JOIN EDUTEC.DBO.CursoProgramado CP ON C.IdCurso = CP.IdCurso
+JOIN EDUTEC.DBO.Matricula M ON CP.IdCursoProg = M.IdCursoProg
+WHERE YEAR(M.FecMatricula) = 2020
+GROUP BY C.NomCurso;
+GO
 
