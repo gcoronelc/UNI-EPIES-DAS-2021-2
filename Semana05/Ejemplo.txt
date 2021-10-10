@@ -1,0 +1,15 @@
+BANCO
+---------------------------------------------
+Retiro
+
+  - Uno historia de usuario --> Caso de Uso
+  - Un usuario 
+  - Una clave
+  - 
+  
+  
+PROCESO 5NEGOCIO
+------------------------------------------------------
+1.- 
+2.- 
+3.- 
