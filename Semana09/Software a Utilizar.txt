@@ -1,0 +1,10 @@
+
+- Java JDK, el ultimo.
+
+- Apache NetBeans, el ultimo
+
+- SQL Server, el que tengan instalado.
+  Si instalan la versión express, recomiendo instancia predeterminada, siempre.
+
+- SQL Server Management Studio
+
