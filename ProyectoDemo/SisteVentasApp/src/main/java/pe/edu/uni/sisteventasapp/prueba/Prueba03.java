@@ -1,7 +1,7 @@
 package pe.edu.uni.sisteventasapp.prueba;
 
 import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
-import pe.edu.uni.sisteventasapp.service.LogonService;
+import pe.edu.uni.sisteventasapp.service.impl.LogonServiceImpl;
 
 
 /**
@@ -21,7 +21,7 @@ public class Prueba03 {
 			String usuario = "lruiz";
 			String clave = "123456";
 			// Proceso
-			LogonService logonService = new LogonService();
+			LogonServiceImpl logonService = new LogonServiceImpl();
 			EmpleadoDto dto = logonService.validarUsuario(usuario, clave);
 			// Reporte
 			System.out.println("Hola " + dto.getNombre() + " " + dto.getApellido());

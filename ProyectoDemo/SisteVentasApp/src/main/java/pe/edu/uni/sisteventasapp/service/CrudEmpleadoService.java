@@ -10,8 +10,6 @@ import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
  * @facebook www.facebook.com/groups/desarrollasoftware
  * @cursos gcoronelc.github.io
  */
-public interface LogonService {
-	
-	public EmpleadoDto validarUsuario(String usuario, String clave);
+public interface CrudEmpleadoService extends CrudService<EmpleadoDto>, RowMapper<EmpleadoDto>{
 
 }

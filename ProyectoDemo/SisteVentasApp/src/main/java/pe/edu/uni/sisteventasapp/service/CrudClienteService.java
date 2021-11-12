@@ -1,6 +1,6 @@
 package pe.edu.uni.sisteventasapp.service;
 
-import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
+import pe.edu.uni.sisteventasapp.dto.ClienteDto;
 
 /**
  * @author Eric Gustavo Coronel Castillo
@@ -10,8 +10,6 @@ import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
  * @facebook www.facebook.com/groups/desarrollasoftware
  * @cursos gcoronelc.github.io
  */
-public interface LogonService {
-	
-	public EmpleadoDto validarUsuario(String usuario, String clave);
+public interface CrudClienteService extends CrudService<ClienteDto>, RowMapper<ClienteDto>{
 
 }

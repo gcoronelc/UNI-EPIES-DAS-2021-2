@@ -1,7 +1,7 @@
 package pe.edu.uni.sisteventasapp.controller;
 
 import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
-import pe.edu.uni.sisteventasapp.service.LogonService;
+import pe.edu.uni.sisteventasapp.service.impl.LogonServiceImpl;
 import pe.edu.uni.sisteventasapp.util.Session;
 
 /**
@@ -14,10 +14,10 @@ import pe.edu.uni.sisteventasapp.util.Session;
  */
 public class LogonController {
 
-	private LogonService logonService;
+	private LogonServiceImpl logonService;
 
 	public LogonController() {
-		logonService = new LogonService();
+		logonService = new LogonServiceImpl();
 	}
 
 	public void validarUsuario(String usuario, String clave) {

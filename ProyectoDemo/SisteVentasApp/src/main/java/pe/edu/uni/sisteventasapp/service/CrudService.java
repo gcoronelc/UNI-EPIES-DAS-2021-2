@@ -1,6 +1,6 @@
 package pe.edu.uni.sisteventasapp.service;
 
-import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
+import java.util.List;
 
 /**
  * @author Eric Gustavo Coronel Castillo
@@ -10,8 +10,18 @@ import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
  * @facebook www.facebook.com/groups/desarrollasoftware
  * @cursos gcoronelc.github.io
  */
-public interface LogonService {
+public interface CrudService<T> {
 	
-	public EmpleadoDto validarUsuario(String usuario, String clave);
+	T read(Integer id);
+	
+	List<T> read(T bean);
+	
+	List<T> readAll();	
+	
+	void create(T bean);
+	
+	void update(T bean);
+	
+	void delete(Integer id);
 
 }
