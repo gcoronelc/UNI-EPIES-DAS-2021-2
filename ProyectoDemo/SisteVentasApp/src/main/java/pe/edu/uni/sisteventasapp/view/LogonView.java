@@ -1,6 +1,5 @@
 package pe.edu.uni.sisteventasapp.view;
 
-import javax.swing.JOptionPane;
 import pe.edu.uni.sisteventasapp.controller.LogonController;
 import pe.edu.uni.sisteventasapp.util.Mensaje;
 
@@ -46,7 +45,7 @@ public class LogonView extends javax.swing.JDialog {
       jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 24), new java.awt.Color(0, 102, 255))); // NOI18N
 
       jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-      jLabel1.setText("Falta imagen");
+      jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Usuario.png"))); // NOI18N
 
       jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
       jLabel2.setForeground(new java.awt.Color(102, 102, 102));
@@ -101,6 +100,7 @@ public class LogonView extends javax.swing.JDialog {
       jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 24), new java.awt.Color(0, 102, 255))); // NOI18N
 
       btnSalir.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+      btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
       btnSalir.setText("Salir");
       btnSalir.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +110,7 @@ public class LogonView extends javax.swing.JDialog {
 
       btnIngresar.setBackground(new java.awt.Color(153, 255, 255));
       btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+      btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ingresar.png"))); // NOI18N
       btnIngresar.setText("Ingresar");
       btnIngresar.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
