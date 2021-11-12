@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import pe.edu.uni.sisteventasapp.db.AccesoDB;
 import pe.edu.uni.sisteventasapp.dto.ClienteDto;
@@ -54,12 +55,76 @@ public class CrudClienteServiceImpl implements CrudClienteService{
 
 	@Override
 	public List<ClienteDto> read(ClienteDto bean) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		List<ClienteDto> lista = new ArrayList<>();
+		String query = SELECT_BASE 
+				  + "WHERE idcliente = iif(? is null,idcliente, ?) " 
+				  + "and nombre like iif(? is null,nombre, ?) " 
+				  + "and apellido like iif(? is null,apellido, ?) ";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		Connection cn = null;
+		// Preparando el bean
+		bean.setIdcliente(UtilService.ceroToNull(bean.getIdcliente()));
+		bean.setApellido(UtilService.preparaString(bean.getApellido()));
+		bean.setNombre(UtilService.preparaString(bean.getNombre()));
+		try {
+			cn = AccesoDB.getConnection();
+			pstm = cn.prepareStatement(query);
+			pstm.setInt(1, bean.getIdcliente());
+			pstm.setInt(2, bean.getIdcliente());
+			pstm.setString(3, bean.getNombre());
+			pstm.setString(4, bean.getNombre());
+			pstm.setString(5, bean.getApellido());
+			pstm.setString(6, bean.getApellido());
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				ClienteDto dto = mapRow(rs);
+				lista.add(dto);
+			}
+			rs.close();
+			pstm.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error en el proceso, intenteo de nuevo.");
+		} finally {
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
+		return lista;
 	}
 
 	@Override
 	public List<ClienteDto> readAll() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		List<ClienteDto> lista = new ArrayList<>();
+		String query = SELECT_BASE;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		Connection cn = null;
+		try {
+			cn = AccesoDB.getConnection();
+			pstm = cn.prepareStatement(query);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				ClienteDto bean = mapRow(rs);
+				lista.add(bean);
+			}
+			rs.close();
+			pstm.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (Exception e) {
+			throw new RuntimeException("Error en el proceso, intenteo de nuevo.");
+		} finally {
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
+		return lista;
 	}
 
 	@Override
