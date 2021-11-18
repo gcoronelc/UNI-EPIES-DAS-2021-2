@@ -21,8 +21,9 @@ public class Prueba06 {
 			ClienteDto dto = new ClienteDto();
 			List<ClienteDto> lista;
 			// Dato
-			//dto.setIdcliente(4);
-			dto.setNombre("S");
+			//dto.setIdcliente(5);
+			dto.setNombre("SA");
+			dto.setApellido("RA");
 			// Proceso
 			CrudClienteService clienteService = new CrudClienteServiceImpl();
 			lista = clienteService.read(dto);

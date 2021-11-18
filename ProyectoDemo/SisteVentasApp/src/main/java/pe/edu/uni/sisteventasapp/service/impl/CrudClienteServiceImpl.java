@@ -57,14 +57,14 @@ public class CrudClienteServiceImpl implements CrudClienteService{
 	public List<ClienteDto> read(ClienteDto bean) {
 		List<ClienteDto> lista = new ArrayList<>();
 		String query = SELECT_BASE 
-				  + "WHERE idcliente = iif(? is null,idcliente, ?) " 
+				  + "WHERE idcliente = iif(?=0,idcliente, ?) " 
 				  + "and nombre like iif(? is null,nombre, ?) " 
 				  + "and apellido like iif(? is null,apellido, ?) ";
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		Connection cn = null;
 		// Preparando el bean
-		bean.setIdcliente(UtilService.ceroToNull(bean.getIdcliente()));
+		bean.setIdcliente(UtilService.nullToCero(bean.getIdcliente()));
 		bean.setApellido(UtilService.preparaString(bean.getApellido()));
 		bean.setNombre(UtilService.preparaString(bean.getNombre()));
 		try {

@@ -13,9 +13,9 @@ public class UtilService {
 	private UtilService() {
 	}
 	
-	public static Integer ceroToNull(Integer dato){
-		if( dato != null && dato.intValue() == 0 ){
-			dato = null;
+	public static Integer nullToCero(Integer dato){
+		if( dato == null ){
+			dato = 0;
 		}
 		return dato;
 	}

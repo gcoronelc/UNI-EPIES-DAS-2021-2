@@ -13,7 +13,6 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>9.4.0.jre11</version>
 		</dependency>
-
 	</dependencies>
 	 
 	<properties>
