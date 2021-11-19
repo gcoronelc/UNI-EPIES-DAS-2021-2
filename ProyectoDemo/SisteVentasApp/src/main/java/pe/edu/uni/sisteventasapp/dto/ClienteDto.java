@@ -18,6 +18,12 @@ public class ClienteDto {
 	private String correo;
 
 	public ClienteDto() {
+		this.idcliente = 0;
+		this.apellido = "";
+		this.nombre = "";
+		this.dni = "";
+		this.correo = "";
+		this.telefono = "";
 	}
 
 	public Integer getIdcliente() {

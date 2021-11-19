@@ -21,8 +21,12 @@ import pe.edu.uni.sisteventasapp.service.CrudClienteService;
  */
 public class CrudClienteServiceImpl implements CrudClienteService{
 	
-	private static String SELECT_BASE = "select idcliente, nombre, apellido, dni, telefono, correo from cliente ";
-
+	private final String SELECT_BASE = "SELECT IDCLIENTE, NOMBRE, APELLIDO, DNI, TELEFONO, CORREO FROM CLIENTE ";
+	private final String INSERT = "INSERT INTO CLIENTE(NOMBRE,APELLIDO,DNI,TELEFONO,CORREO) VALUES(?,?,?,?,?)";
+	private final String SELECT_ID = "SELECT @@IDENTITY AS ID";
+	private final String DELETE = "DELETE FROM CLIENTE WHERE IDCLIENTE=?";
+	private final String UPDATE = "UPDATE CLIENTE SET NOMBRE=?,APELLIDO=?,DNI=?,TELEFONO=?,CORREO=? WHERE IDCLIENTE=?";
+	
 	@Override
 	public ClienteDto read(Integer id) {
 		ClienteDto clienteDto = null;
@@ -129,17 +133,138 @@ public class CrudClienteServiceImpl implements CrudClienteService{
 
 	@Override
 	public void create(ClienteDto bean) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			// Inicio de transacción
+			cn = AccesoDB.getConnection();
+			cn.setAutoCommit(false);
+			// Insertar registro
+			pstm = cn.prepareStatement(INSERT);
+			pstm.setString(1, bean.getNombre());
+			pstm.setString(2, bean.getApellido());
+			pstm.setString(3, bean.getDni());
+			pstm.setString(4, bean.getTelefono());
+			pstm.setString(5, bean.getCorreo());
+			pstm.executeUpdate();
+			pstm.close();
+			// Leer el codigo generado
+			pstm = cn.prepareStatement(SELECT_ID);
+			rs = pstm.executeQuery();
+			rs.next();
+			bean.setIdcliente(rs.getInt("ID"));
+			rs.close();
+			pstm.close();
+			// Confirmar transacción
+			cn.commit();
+		} catch (SQLException e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
+			throw new RuntimeException(e.getMessage());
+		} catch (Exception e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
+			throw new RuntimeException("Error en el proceso, intentelo mas tarde.");
+		}finally{
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 
 	@Override
 	public void update(ClienteDto bean) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			// Inicio de transacción
+			cn = AccesoDB.getConnection();
+			cn.setAutoCommit(false);
+			// Insertar registro
+			pstm = cn.prepareStatement(UPDATE);
+			pstm.setString(1, bean.getNombre());
+			pstm.setString(2, bean.getApellido());
+			pstm.setString(3, bean.getDni());
+			pstm.setString(4, bean.getTelefono());
+			pstm.setString(5, bean.getCorreo());
+			pstm.setInt(6, bean.getIdcliente());
+			int nroFilas = pstm.executeUpdate();
+			pstm.close();
+			// Verificar
+			if(nroFilas!=1){
+				throw new SQLException("Error, datos incorrectos, corriga e intente de nuevp.");
+			}
+			// Confirmar transacción
+			cn.commit();
+		} catch (SQLException e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
+			throw new RuntimeException(e.getMessage());
+		} catch (Exception e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
+			throw new RuntimeException("Error en el proceso, intentelo mas tarde.");
+		}finally{
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 
 	@Override
 	public void delete(Integer id) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			// Inicio de transacción
+			cn = AccesoDB.getConnection();
+			cn.setAutoCommit(false);
+			// Validacion
+			// Se debe verificar si el cliente tiene comprobantes, 
+			// En ese caso debe generar un error.
+			
+			// Insertar registro
+			pstm = cn.prepareStatement(DELETE);
+			pstm.setInt(1, id);
+			int nroFilas = pstm.executeUpdate();
+			pstm.close();
+			// Verificar
+			if(nroFilas!=1){
+				throw new SQLException("Error, datos incorrectos, corriga e intente de nuevp.");
+			}
+			// Confirmar transacción
+			cn.commit();
+		} catch (SQLException e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
+			throw new RuntimeException(e.getMessage());
+		} catch (Exception e) {
+			try {
+				cn.rollback();
+			} catch (Exception e1) {
+			}
+			throw new RuntimeException("Error en el proceso, intentelo mas tarde.");
+		}finally{
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 
 	@Override

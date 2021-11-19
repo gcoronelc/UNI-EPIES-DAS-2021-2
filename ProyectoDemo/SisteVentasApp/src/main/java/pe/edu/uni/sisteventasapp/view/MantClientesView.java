@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import pe.edu.uni.sisteventasapp.controller.ClienteController;
 import pe.edu.uni.sisteventasapp.dto.ClienteDto;
 import pe.edu.uni.sisteventasapp.util.Mensaje;
+import pe.edu.uni.sisteventasapp.util.Session;
 
 /**
  * @author Eric Gustavo Coronel Castillo
@@ -20,7 +21,7 @@ import pe.edu.uni.sisteventasapp.util.Mensaje;
  * @cursos gcoronelc.github.io
  */
 public class MantClientesView extends javax.swing.JInternalFrame {
-	
+
 	private List<ClienteDto> listaData;
 	ClienteController clienteController;
 
@@ -48,9 +49,9 @@ public class MantClientesView extends javax.swing.JInternalFrame {
       jLabel3 = new javax.swing.JLabel();
       txtNombre = new javax.swing.JTextField();
       btnConsultar = new javax.swing.JButton();
-      jButton2 = new javax.swing.JButton();
-      jButton3 = new javax.swing.JButton();
-      jButton4 = new javax.swing.JButton();
+      btnNuevo = new javax.swing.JButton();
+      btnEditar = new javax.swing.JButton();
+      btnEliminar = new javax.swing.JButton();
       jButton5 = new javax.swing.JButton();
       jButton6 = new javax.swing.JButton();
       jPanel2 = new javax.swing.JPanel();
@@ -93,14 +94,29 @@ public class MantClientesView extends javax.swing.JInternalFrame {
          }
       });
 
-      jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
-      jButton2.setToolTipText("Buscar clientes");
+      btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
+      btnNuevo.setToolTipText("Buscar clientes");
+      btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnNuevoActionPerformed(evt);
+         }
+      });
 
-      jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
-      jButton3.setToolTipText("Buscar clientes");
+      btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+      btnEditar.setToolTipText("Buscar clientes");
+      btnEditar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEditarActionPerformed(evt);
+         }
+      });
 
-      jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tacho.png"))); // NOI18N
-      jButton4.setToolTipText("Buscar clientes");
+      btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tacho.png"))); // NOI18N
+      btnEliminar.setToolTipText("Buscar clientes");
+      btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnEliminarActionPerformed(evt);
+         }
+      });
 
       jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/excel.png"))); // NOI18N
       jButton5.setToolTipText("Buscar clientes");
@@ -128,11 +144,11 @@ public class MantClientesView extends javax.swing.JInternalFrame {
             .addGap(18, 18, 18)
             .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,9 +176,9 @@ public class MantClientesView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                   .addGap(0, 0, Short.MAX_VALUE))
-               .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
@@ -172,10 +188,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
 
       tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][] {
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null}
+
          },
          new String [] {
             "CODIGO", "APELLIDO", "NOMBRE", "DNI", "TELEFONO", "CORREO"
@@ -196,6 +209,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
             return canEdit [columnIndex];
          }
       });
+      tablaDatos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
       jScrollPane1.setViewportView(tablaDatos);
       if (tablaDatos.getColumnModel().getColumnCount() > 0) {
          tablaDatos.getColumnModel().getColumn(0).setResizable(false);
@@ -252,25 +266,80 @@ public class MantClientesView extends javax.swing.JInternalFrame {
 			// Traer lista de clientes
 			listaData = clienteController.read(bean);
 			// Mostrar lista en la tabla
-			DefaultTableModel tabla;
-			tabla = (DefaultTableModel) tablaDatos.getModel();
-			tabla.setRowCount(0);
-			for (ClienteDto rec : listaData) {
-				Object[] rowData = new Object[]{rec.getIdcliente(), rec.getApellido(), rec.getNombre(),
-					rec.getDni(), rec.getTelefono(), rec.getCorreo()};
-				tabla.addRow(rowData);
-			}
+			pintarTabla(0);
 		} catch (Exception e) {
 			Mensaje.error(this, title);
 		}
    }//GEN-LAST:event_btnConsultarActionPerformed
 
+   private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+		Session.put("ACCION", UtilView.CRUD_CREATE);
+		ClienteDto bean = new ClienteDto();
+		Session.put("BEAN", bean);
+		EditarClienteView view = new EditarClienteView(null, true);
+		view.prepararFormulario();
+		view.setVisible(true);
+		String respuesta = Session.get("RESPUESTA").toString();
+		if (respuesta.equals(UtilView.MODAL_CANCELAR)) {
+			return;
+		}
+		bean = (ClienteDto) Session.get("BEAN");
+		listaData.add(bean);
+		pintarTabla(listaData.size()-1);
+   }//GEN-LAST:event_btnNuevoActionPerformed
+
+   private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+		int fila = tablaDatos.getSelectedRow();
+		if (fila == -1) {
+			Mensaje.error(this, "Debe seleccionar una fila.");
+			return;
+		}
+		ClienteDto bean = listaData.get(fila);
+		Session.put("BEAN", bean);
+		Session.put("ACCION", UtilView.CRUD_UPDATE);
+		EditarClienteView view = new EditarClienteView(null, true);
+		view.prepararFormulario();
+		view.setVisible(true);
+		String respuesta = Session.get("RESPUESTA").toString();
+		if (respuesta.equals(UtilView.MODAL_CANCELAR)) {
+			return;
+		}
+		bean = (ClienteDto) Session.get("BEAN");
+		listaData.set(fila, bean);
+		pintarTabla(fila);
+   }//GEN-LAST:event_btnEditarActionPerformed
+
+   private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+		int fila = tablaDatos.getSelectedRow();
+		if (fila == -1) {
+			Mensaje.error(this, "Debe seleccionar una fila.");
+			return;
+		}
+		ClienteDto bean = listaData.get(fila);
+		Session.put("BEAN", bean);
+		Session.put("ACCION", UtilView.CRUD_DELETE);
+		EditarClienteView view = new EditarClienteView(null, true);
+		view.prepararFormulario();
+		view.setVisible(true);
+		String respuesta = Session.get("RESPUESTA").toString();
+		if (respuesta.equals(UtilView.MODAL_CANCELAR)) {
+			return;
+		}
+		listaData.remove(fila);
+		if(listaData.size()==0){
+			fila = -1;
+		}else if(fila>=listaData.size()){
+			fila = listaData.size()-1;
+		}
+		pintarTabla(fila);
+   }//GEN-LAST:event_btnEliminarActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnConsultar;
-   private javax.swing.JButton jButton2;
-   private javax.swing.JButton jButton3;
-   private javax.swing.JButton jButton4;
+   private javax.swing.JButton btnEditar;
+   private javax.swing.JButton btnEliminar;
+   private javax.swing.JButton btnNuevo;
    private javax.swing.JButton jButton5;
    private javax.swing.JButton jButton6;
    private javax.swing.JLabel jLabel1;
@@ -284,5 +353,20 @@ public class MantClientesView extends javax.swing.JInternalFrame {
    private javax.swing.JTextField txtCodigo;
    private javax.swing.JTextField txtNombre;
    // End of variables declaration//GEN-END:variables
+
+	private void pintarTabla(int filaActiva) {
+		DefaultTableModel tabla;
+		tabla = (DefaultTableModel) tablaDatos.getModel();
+		tabla.setRowCount(0);
+		for (ClienteDto rec : listaData) {
+			Object[] rowData = new Object[]{rec.getIdcliente(), rec.getApellido(), rec.getNombre(),
+				rec.getDni(), rec.getTelefono(), rec.getCorreo()};
+			tabla.addRow(rowData);
+		}
+		if(filaActiva>=listaData.size() || filaActiva<0){
+			return;
+		}
+		tablaDatos.setRowSelectionInterval(filaActiva, filaActiva);
+	}
 
 }
