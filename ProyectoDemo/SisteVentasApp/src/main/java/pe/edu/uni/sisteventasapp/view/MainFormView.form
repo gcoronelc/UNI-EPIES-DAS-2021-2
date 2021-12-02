@@ -26,6 +26,26 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Procesos"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuProcesosRegistrarVenta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar venta"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuProcesosRegistrarVentaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuProcesosEjecutarVenta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ejecutar venta"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuProcesosCancelarVenta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cancelar venta"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuTablas">
           <Properties>

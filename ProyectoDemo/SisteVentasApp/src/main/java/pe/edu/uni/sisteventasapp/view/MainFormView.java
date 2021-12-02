@@ -39,6 +39,9 @@ public class MainFormView extends javax.swing.JFrame {
       menuArchivo = new javax.swing.JMenu();
       menuArchivoSalir = new javax.swing.JMenuItem();
       menuProcesos = new javax.swing.JMenu();
+      menuProcesosRegistrarVenta = new javax.swing.JMenuItem();
+      menuProcesosEjecutarVenta = new javax.swing.JMenuItem();
+      menuProcesosCancelarVenta = new javax.swing.JMenuItem();
       menuTablas = new javax.swing.JMenu();
       menuTablasClientes = new javax.swing.JMenuItem();
       menuConsultas = new javax.swing.JMenu();
@@ -61,6 +64,21 @@ public class MainFormView extends javax.swing.JFrame {
       menuBar.add(menuArchivo);
 
       menuProcesos.setText("Procesos");
+
+      menuProcesosRegistrarVenta.setText("Registrar venta");
+      menuProcesosRegistrarVenta.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuProcesosRegistrarVentaActionPerformed(evt);
+         }
+      });
+      menuProcesos.add(menuProcesosRegistrarVenta);
+
+      menuProcesosEjecutarVenta.setText("Ejecutar venta");
+      menuProcesos.add(menuProcesosEjecutarVenta);
+
+      menuProcesosCancelarVenta.setText("Cancelar venta");
+      menuProcesos.add(menuProcesosCancelarVenta);
+
       menuBar.add(menuProcesos);
 
       menuTablas.setText("Tablas");
@@ -110,6 +128,10 @@ public class MainFormView extends javax.swing.JFrame {
       mostrarForm(MantClientesView.class);
    }//GEN-LAST:event_menuTablasClientesActionPerformed
 
+   private void menuProcesosRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProcesosRegistrarVentaActionPerformed
+      mostrarForm(ProcesoRegistrarVentaView.class);
+   }//GEN-LAST:event_menuProcesosRegistrarVentaActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -152,6 +174,9 @@ public class MainFormView extends javax.swing.JFrame {
    private javax.swing.JMenuBar menuBar;
    private javax.swing.JMenu menuConsultas;
    private javax.swing.JMenu menuProcesos;
+   private javax.swing.JMenuItem menuProcesosCancelarVenta;
+   private javax.swing.JMenuItem menuProcesosEjecutarVenta;
+   private javax.swing.JMenuItem menuProcesosRegistrarVenta;
    private javax.swing.JMenu menuReportes;
    private javax.swing.JMenu menuTablas;
    private javax.swing.JMenuItem menuTablasClientes;
