@@ -35,8 +35,32 @@ public class ComboServiceImpl implements ComboService {
 
 	@Override
 	public List<ComboDto> obtenerAutosDisponibles(Integer idMarca) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	
+		String sql = "select IDAUTO codigo, concat(modelo, ' - ', color, ' - ', MATRICULA) texto  " 
+				  + "from AUTO where vendido=0 and IDMARCA = ? order by 2";
+		List<ComboDto> lista = new ArrayList<>();
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		Connection cn = null;
+		try {
+			cn = AccesoDB.getConnection();
+			pstm = cn.prepareStatement(sql);
+			pstm.setInt(1, idMarca);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				ComboDto bean = mapRow(rs);
+				lista.add(bean);
+			}
+			rs.close();
+			pstm.close();
+		} catch (Exception e) {
+			System.err.println("Error al consultar combo, SQL " + sql);
+		} finally {
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
+		return lista;
 	}
 
 	@Override

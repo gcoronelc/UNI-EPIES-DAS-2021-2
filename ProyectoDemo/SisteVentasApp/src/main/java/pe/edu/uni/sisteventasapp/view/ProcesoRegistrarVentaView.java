@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
-
 package pe.edu.uni.sisteventasapp.view;
 
 import java.util.List;
 import pe.edu.uni.sisteventasapp.controller.VentaController;
+import pe.edu.uni.sisteventasapp.dto.AutoDto;
 import pe.edu.uni.sisteventasapp.dto.ClienteDto;
 import pe.edu.uni.sisteventasapp.dto.ComboDto;
+import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
+import pe.edu.uni.sisteventasapp.util.Session;
 
 /**
  * @author Eric Gustavo Coronel Castillo
@@ -28,7 +26,13 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
 		  ventaController = new VentaController();
 		  cargarComboClientes();
 		  cargarComboMarcas();
+		  mostrarEmpleado();
     }
+	 
+	 private void mostrarEmpleado(){
+		 EmpleadoDto bean = (EmpleadoDto) Session.get("USUARIO");
+		 txtVendedor.setText(bean.getNombre() + ", " + bean.getApellido());
+	 }
 	 
 	 private void cargarComboMarcas(){
 		 try {
@@ -72,11 +76,11 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
       jLabel2 = new javax.swing.JLabel();
       jLabel3 = new javax.swing.JLabel();
       jLabel4 = new javax.swing.JLabel();
-      txtVendedor4 = new javax.swing.JTextField();
+      txtColor = new javax.swing.JTextField();
       jLabel5 = new javax.swing.JLabel();
-      txtVendedor5 = new javax.swing.JTextField();
+      txtPrecio = new javax.swing.JTextField();
       jLabel6 = new javax.swing.JLabel();
-      cboVendedor = new javax.swing.JComboBox<>();
+      cboAuto = new javax.swing.JComboBox<>();
       cboCliente = new javax.swing.JComboBox<>();
       cboMarca = new javax.swing.JComboBox<>();
 
@@ -130,7 +134,7 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
       jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formulario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Arial", 1, 24), new java.awt.Color(0, 153, 255))); // NOI18N
 
       jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-      jLabel1.setText("Empleado");
+      jLabel1.setText("Vendedor");
 
       txtVendedor.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
       txtVendedor.setDisabledTextColor(new java.awt.Color(0, 102, 204));
@@ -145,25 +149,35 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
       jLabel4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
       jLabel4.setText("Automóvil");
 
-      txtVendedor4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-      txtVendedor4.setDisabledTextColor(new java.awt.Color(0, 102, 204));
-      txtVendedor4.setEnabled(false);
+      txtColor.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      txtColor.setDisabledTextColor(new java.awt.Color(0, 102, 204));
+      txtColor.setEnabled(false);
 
       jLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
       jLabel5.setText("Color");
 
-      txtVendedor5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-      txtVendedor5.setDisabledTextColor(new java.awt.Color(0, 102, 204));
-      txtVendedor5.setEnabled(false);
+      txtPrecio.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      txtPrecio.setDisabledTextColor(new java.awt.Color(0, 102, 204));
+      txtPrecio.setEnabled(false);
 
       jLabel6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
       jLabel6.setText("Precio");
 
-      cboVendedor.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      cboAuto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      cboAuto.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cboAutoActionPerformed(evt);
+         }
+      });
 
       cboCliente.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
       cboMarca.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      cboMarca.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cboMarcaActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
       jPanel2.setLayout(jPanel2Layout);
@@ -187,15 +201,15 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(cboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(cboAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(txtVendedor4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(txtVendedor5, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(371, Short.MAX_VALUE))
       );
       jPanel2Layout.setVerticalGroup(
@@ -216,15 +230,15 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-               .addComponent(cboVendedor))
+               .addComponent(cboAuto))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(txtVendedor4, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
+               .addComponent(txtColor, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(txtVendedor5, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
+               .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
             .addContainerGap(22, Short.MAX_VALUE))
       );
 
@@ -251,16 +265,47 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
    }//GEN-LAST:event_btnGrabarActionPerformed
 
    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+		this.dispose();
    }//GEN-LAST:event_btnCancelarActionPerformed
+
+   private void cboMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMarcaActionPerformed
+      int index = cboMarca.getSelectedIndex();
+		if(index == -1){
+			return;
+		}
+		ComboDto marca = (ComboDto) cboMarca.getSelectedItem();
+		List<ComboDto> autos = ventaController.obtenerAutosDisponibles(marca.getCodigo());
+		txtColor.setText("");
+		txtPrecio.setText("");
+		cboAuto.setEnabled(false);
+		cboAuto.removeAllItems();
+		for (ComboDto auto : autos) {
+			cboAuto.addItem(auto);
+		}
+		cboAuto.setSelectedIndex(-1);
+		cboAuto.setEnabled(true);
+   }//GEN-LAST:event_cboMarcaActionPerformed
+
+   private void cboAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAutoActionPerformed
+      txtColor.setText("");
+		txtPrecio.setText("");
+		int index = cboAuto.getSelectedIndex();
+		if(index==-1){
+			return;
+		}
+		ComboDto bean = (ComboDto) cboAuto.getSelectedItem();
+		AutoDto autoDto = ventaController.traerAutoPorId(bean.getCodigo());
+		txtColor.setText(autoDto.getColor());
+		txtPrecio.setText("" + autoDto.getPrecio());
+   }//GEN-LAST:event_cboAutoActionPerformed
 
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnCancelar;
    private javax.swing.JButton btnGrabar;
+   private javax.swing.JComboBox<ComboDto> cboAuto;
    private javax.swing.JComboBox<ComboDto> cboCliente;
    private javax.swing.JComboBox<ComboDto> cboMarca;
-   private javax.swing.JComboBox<ComboDto> cboVendedor;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
@@ -269,9 +314,9 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
    private javax.swing.JLabel jLabel6;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
+   private javax.swing.JTextField txtColor;
+   private javax.swing.JTextField txtPrecio;
    private javax.swing.JTextField txtVendedor;
-   private javax.swing.JTextField txtVendedor4;
-   private javax.swing.JTextField txtVendedor5;
    // End of variables declaration//GEN-END:variables
 
 }
