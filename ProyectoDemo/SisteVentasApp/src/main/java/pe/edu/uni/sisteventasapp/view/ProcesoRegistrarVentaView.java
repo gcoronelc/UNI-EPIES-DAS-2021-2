@@ -5,6 +5,11 @@
 
 package pe.edu.uni.sisteventasapp.view;
 
+import java.util.List;
+import pe.edu.uni.sisteventasapp.controller.VentaController;
+import pe.edu.uni.sisteventasapp.dto.ClienteDto;
+import pe.edu.uni.sisteventasapp.dto.ComboDto;
+
 /**
  * @author Eric Gustavo Coronel Castillo
  * @blog www.desarrollasoftware.com
@@ -14,11 +19,40 @@ package pe.edu.uni.sisteventasapp.view;
  * @cursos gcoronelc.github.io
  */
 public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
+	
+	private VentaController ventaController;
 
     /** Creates new form ProcesoRegistrarVentaView */
     public ProcesoRegistrarVentaView() {
         initComponents();
+		  ventaController = new VentaController();
+		  cargarComboClientes();
+		  cargarComboMarcas();
     }
+	 
+	 private void cargarComboMarcas(){
+		 try {
+			 List<ComboDto> lista = ventaController.obtenerMarcas();
+			 cboMarca.removeAllItems();
+			 for (ComboDto bean : lista) {
+				 cboMarca.addItem(bean);
+			 }
+			 cboMarca.setSelectedIndex(-1);
+		 } catch (Exception e) {
+		 }
+	 }
+	 
+	 private void cargarComboClientes(){
+		 try {
+			 List<ComboDto> lista = ventaController.obtenerClientes();
+			 cboCliente.removeAllItems();
+			 for (ComboDto bean : lista) {
+				 cboCliente.addItem(bean);
+			 }
+			 cboCliente.setSelectedIndex(-1);
+		 } catch (Exception e) {
+		 }
+	 }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -43,8 +77,8 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
       txtVendedor5 = new javax.swing.JTextField();
       jLabel6 = new javax.swing.JLabel();
       cboVendedor = new javax.swing.JComboBox<>();
-      cboVendedor1 = new javax.swing.JComboBox<>();
-      cboVendedor2 = new javax.swing.JComboBox<>();
+      cboCliente = new javax.swing.JComboBox<>();
+      cboMarca = new javax.swing.JComboBox<>();
 
       setClosable(true);
       setMaximizable(true);
@@ -99,6 +133,8 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
       jLabel1.setText("Empleado");
 
       txtVendedor.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      txtVendedor.setDisabledTextColor(new java.awt.Color(0, 102, 204));
+      txtVendedor.setEnabled(false);
 
       jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
       jLabel2.setText("Cliente");
@@ -110,23 +146,24 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
       jLabel4.setText("Automóvil");
 
       txtVendedor4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      txtVendedor4.setDisabledTextColor(new java.awt.Color(0, 102, 204));
+      txtVendedor4.setEnabled(false);
 
       jLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
       jLabel5.setText("Color");
 
       txtVendedor5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+      txtVendedor5.setDisabledTextColor(new java.awt.Color(0, 102, 204));
+      txtVendedor5.setEnabled(false);
 
       jLabel6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
       jLabel6.setText("Precio");
 
       cboVendedor.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-      cboVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-      cboVendedor1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-      cboVendedor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+      cboCliente.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
-      cboVendedor2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-      cboVendedor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+      cboMarca.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
       javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
       jPanel2.setLayout(jPanel2Layout);
@@ -138,27 +175,27 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(cboVendedor1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                  .addComponent(cboCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(cboVendedor2, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(cboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(cboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(cboVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(txtVendedor4, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(txtVendedor4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel2Layout.createSequentialGroup()
                   .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(txtVendedor5, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addComponent(txtVendedor5, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(371, Short.MAX_VALUE))
       );
       jPanel2Layout.setVerticalGroup(
@@ -171,11 +208,11 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-               .addComponent(cboVendedor1))
+               .addComponent(cboCliente))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-               .addComponent(cboVendedor2))
+               .addComponent(cboMarca))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
@@ -221,9 +258,9 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnCancelar;
    private javax.swing.JButton btnGrabar;
-   private javax.swing.JComboBox<String> cboVendedor;
-   private javax.swing.JComboBox<String> cboVendedor1;
-   private javax.swing.JComboBox<String> cboVendedor2;
+   private javax.swing.JComboBox<ComboDto> cboCliente;
+   private javax.swing.JComboBox<ComboDto> cboMarca;
+   private javax.swing.JComboBox<ComboDto> cboVendedor;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;

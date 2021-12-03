@@ -74,4 +74,11 @@ public class ClienteDto {
 		this.correo = correo;
 	}
 
+	@Override
+	public String toString() {
+		return nombre + " - " + apellido + " (" + idcliente + ")";
+	}
+	
+	
+
 }
