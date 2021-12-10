@@ -1,9 +1,7 @@
 package pe.edu.uni.sisteventasapp.prueba;
 
 import pe.edu.uni.sisteventasapp.dto.VentaDto;
-import pe.edu.uni.sisteventasapp.service.CrudClienteService;
 import pe.edu.uni.sisteventasapp.service.VentaService;
-import pe.edu.uni.sisteventasapp.service.impl.CrudClienteServiceImpl;
 import pe.edu.uni.sisteventasapp.service.impl.VentaServiceImpl;
 
 /**
