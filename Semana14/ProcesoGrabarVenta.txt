@@ -1,0 +1,10 @@
+﻿PROCESO GRABAR VENTA
+---------------------------------------------------------
+- Verificar que el codigo del cliente existe.
+- Verificar si el auto existe.
+- Verificar que el estado del auto es NO VENDIDO (0).
+- Cambiar el estado del auto a RESERVADO (1)
+- Registrar los datos de la venta.
+
+
+

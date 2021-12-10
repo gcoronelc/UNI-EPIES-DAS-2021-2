@@ -50,5 +50,7 @@ public class VentaController {
 	public void grabarVenta(VentaDto bean) {
 		ventaService.grabarVenta(bean);
 	}
+	
+	
 
 }

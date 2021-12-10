@@ -6,6 +6,8 @@ import pe.edu.uni.sisteventasapp.dto.AutoDto;
 import pe.edu.uni.sisteventasapp.dto.ClienteDto;
 import pe.edu.uni.sisteventasapp.dto.ComboDto;
 import pe.edu.uni.sisteventasapp.dto.EmpleadoDto;
+import pe.edu.uni.sisteventasapp.dto.VentaDto;
+import pe.edu.uni.sisteventasapp.util.Mensaje;
 import pe.edu.uni.sisteventasapp.util.Session;
 
 /**
@@ -261,7 +263,31 @@ public class ProcesoRegistrarVentaView extends javax.swing.JInternalFrame {
    }// </editor-fold>//GEN-END:initComponents
 
    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-
+		try {
+			// Variables
+			VentaDto bean = new VentaDto();
+			double importe, impuesto, total;
+			// Datos
+			ComboDto cliente = (ComboDto) cboCliente.getSelectedItem();
+			ComboDto auto = (ComboDto) cboAuto.getSelectedItem();
+			EmpleadoDto vendedor = (EmpleadoDto) Session.get("USUARIO");
+			total = Double.parseDouble(txtPrecio.getText());
+			importe = total / 1.18;
+			impuesto = total - importe;			
+			bean.setIdcliente(cliente.getCodigo());
+			bean.setIdauto(auto.getCodigo());
+			bean.setVendedor(vendedor.getIdempleado());
+			bean.setEstado(1);
+			bean.setImporte(importe);
+			bean.setImpuesto(impuesto);
+			bean.setTotal(total);
+			// Grabar
+			ventaController.grabarVenta(bean);
+			// Mensaje
+			Mensaje.info(this, "Proceso ejecutado correctamente.");
+		} catch (Exception e) {
+			Mensaje.error(this, e.getMessage());
+		}
    }//GEN-LAST:event_btnGrabarActionPerformed
 
    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

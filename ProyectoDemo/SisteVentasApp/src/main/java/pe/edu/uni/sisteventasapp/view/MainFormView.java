@@ -17,6 +17,7 @@ public class MainFormView extends javax.swing.JFrame {
 	public MainFormView() {
 		initComponents();
 		establecerTitulo();
+		activarMenu();
 	}
 
 	private void establecerTitulo() {
@@ -45,6 +46,7 @@ public class MainFormView extends javax.swing.JFrame {
       menuTablas = new javax.swing.JMenu();
       menuTablasClientes = new javax.swing.JMenuItem();
       menuConsultas = new javax.swing.JMenu();
+      menuConsultasComiisión = new javax.swing.JMenuItem();
       menuReportes = new javax.swing.JMenu();
       menuUtil = new javax.swing.JMenu();
 
@@ -94,6 +96,15 @@ public class MainFormView extends javax.swing.JFrame {
       menuBar.add(menuTablas);
 
       menuConsultas.setText("Consultas");
+
+      menuConsultasComiisión.setText("Comisiones");
+      menuConsultasComiisión.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuConsultasComiisiónActionPerformed(evt);
+         }
+      });
+      menuConsultas.add(menuConsultasComiisión);
+
       menuBar.add(menuConsultas);
 
       menuReportes.setText("Reportes");
@@ -131,6 +142,10 @@ public class MainFormView extends javax.swing.JFrame {
    private void menuProcesosRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProcesosRegistrarVentaActionPerformed
       mostrarForm(ProcesoRegistrarVentaView.class);
    }//GEN-LAST:event_menuProcesosRegistrarVentaActionPerformed
+
+   private void menuConsultasComiisiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasComiisiónActionPerformed
+      mostrarForm(ConsultaComisionView.class);
+   }//GEN-LAST:event_menuConsultasComiisiónActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -173,6 +188,7 @@ public class MainFormView extends javax.swing.JFrame {
    private javax.swing.JMenuItem menuArchivoSalir;
    private javax.swing.JMenuBar menuBar;
    private javax.swing.JMenu menuConsultas;
+   private javax.swing.JMenuItem menuConsultasComiisión;
    private javax.swing.JMenu menuProcesos;
    private javax.swing.JMenuItem menuProcesosCancelarVenta;
    private javax.swing.JMenuItem menuProcesosEjecutarVenta;
@@ -206,4 +222,10 @@ public class MainFormView extends javax.swing.JFrame {
 		}
 	}
 
+	private void activarMenu(){
+		EmpleadoDto dto = (EmpleadoDto) Session.get("USUARIO");
+		menuProcesosRegistrarVenta.setEnabled(dto.getIdrol()==1 || dto.getIdrol()==2);
+		menuProcesosEjecutarVenta.setEnabled(dto.getIdrol()==1 || dto.getIdrol()==4);
+		menuProcesosCancelarVenta.setEnabled(dto.getIdrol()==1 || dto.getIdrol()==2);
+	}
 }
